@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Set a light background color */
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        section{
+ margin-top: 45%;   
+}
+        .button-container {
+            display:block;
+            margin-bottom: 20px; /* Add margin between the button containers */
+            text-align: center; /* Center the buttons horizontally */
+        }
+
+        .btn {
+            background-color: #162938; /* Set main color for the button */
+            color: #ffffff; /* Text color */
+            padding: 10px 20px; /* Padding inside the button */
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto; /* Center the button within its container */
+        }
+
+        .btn:hover {
+            background-color: #0e1e28; /* Darken the button color on hover */
+        }
+
+        .btn:focus {
+            outline: none; /* Remove default focus outline */
+        }
+
+        .btn:active {
+            transform: translateY(1px); /* Add a slight click effect */
+        }
+    </style>
+</head>
+<body>
+    <section>
+    <div class="button-container">
+        <button type="button" class="btn btn-primary" onclick="currentFile()">Choose Current File</button>
+    </div>
+
+    <div class="button-container">
+        <button type="button" class="btn btn-primary" onclick="selectFiles()">Choose Multiple Files</button>
+    </div>
+</section>
+    <script>
+        function currentFile() {
+            const vscode = acquireVsCodeApi();
+            vscode.postMessage({ command: 'current' });
+        }
+
+        function selectFiles() {
+            const vscode = acquireVsCodeApi();
+            vscode.postMessage({ command: 'select' });
+        }
+    </script>
+</body>
+</html>

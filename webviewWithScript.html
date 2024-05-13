@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Files</title>
+</head>
+<body>
+    <div>${fileList}</div>
+
+    <script>
+        // Script to handle form submission
+        function submitSelectedFiles() {
+    const form = document.getElementById('fileListForm');
+    const formData = new FormData(form);
+    const selectedFiles = [];
+
+    // Iterate through the form data and add selected files to the array
+    for (const entry of formData.entries()) {
+        selectedFiles.push(entry[1]);
+    }
+
+    // Get the existing webview panel
+    const existingPanel = vscode.window.activeWebview;
+
+    // Replace the current HTML content with the content of webviewContent.html
+    existingPanel.webview.html = getWebviewContentWithScript(`<div>${selectedFiles.join('<br>')}</div>`);
+}
+
+    </script>
+</body>
+</html>

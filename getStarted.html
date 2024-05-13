@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Set a light background color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Ensure elements stack vertically */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        button.btn {
+            background-color: #162938; /* Set main color for the button */
+            color: #ffffff; /* Text color */
+            padding: 10px 20px; /* Padding inside the button */
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button.btn:hover {
+            background-color: #0e1e28; /* Darken the button color on hover */
+        }
+
+        button.btn:focus {
+            outline: none; /* Remove default focus outline */
+        }
+
+        button.btn:active {
+            transform: translateY(1px); /* Add a slight click effect */
+        }
+
+        #animation-container2 {
+            display: block;
+            margin-bottom: 10px; /* Add bottom margin to animation container */
+        }
+        h1{
+            text-align: center;
+            color:#0e1e28
+        }
+        h3{
+            text-align: center;
+            color:#0e1e28
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="animation" id="animation-container2"></div>
+<h1>"Welcome to QUBIT!"</h1>
+<h3>"Your personal coding bot."</h3>
+    <button type="button" class="btn btn-primary" onclick="requestReviewedCode()">Get Started</button>
+
+    <script>
+        function requestReviewedCode() {
+            const vscode = acquireVsCodeApi();
+            vscode.postMessage({ command: 'alert' });
+        }
+    </script>
+         <script
+         src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.4/lottie.min.js"></script>
+     <script>
+
+
+     // Load Lottie animations
+     const animationContainer = document.getElementById('animation-container');
+     const animations = [
+         'https://shafeen-noor.github.io/animations/landing-Animation.json',
+         'https://shafeen-noor.github.io/animations/landing-Animation.json',
+         'https://shafeen-noor.github.io/animations/landing-Animation.json'
+     ];
+     let currentIndex = 0;
+     let anim;
+
+     function loadNextAnimation() {
+         // Load the JSON animation file
+         var animationData = {
+             container: document.getElementById('animation-container2'), // Specify the container
+             renderer: 'svg', // Choose the renderer, 'svg' or 'canvas'
+             loop: true, // Set loop to true or false
+             autoplay: true, // Set autoplay to true or false
+             path: animations[currentIndex] // Path to the current JSON animation file
+         };
+         // Clear the previous animation
+         if (anim) {
+             anim.destroy();
+         }
+         // Render the animation
+         anim = lottie.loadAnimation(animationData);
+
+         // Increment the index or reset to 0 if reached the end
+         currentIndex = (currentIndex + 1) % animations.length;
+     }
+
+     // Load the first animation immediately
+     loadNextAnimation();
+
+     // Set interval to load next animation every 7 seconds
+     setInterval(loadNextAnimation, 7000);
+ </script>
+</body>
+</html>
